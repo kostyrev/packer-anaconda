@@ -5,7 +5,9 @@
     - name: update ca-certificates package
       package:
         name: ca-certificates
-        state: latest
+        state: present
+      tags:
+        - skip_ansible_lint
   roles:
     - role: andrewrothstein.anaconda
       anaconda_make_sys_default: yes

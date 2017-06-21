@@ -18,3 +18,5 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_version|version_compare(16.04, '<=')
       changed_when: no
+      tags:
+        - skip_ansible_lint

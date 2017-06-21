@@ -9,7 +9,7 @@ lint:
 	@pre-commit install
 
 roles:
-	@ansible-galaxy install --ignore-certs -r Ansiblefile.yml
+	@ansible-galaxy install --ignore-errors --ignore-certs -r Ansiblefile.yml
 
 packer:
 	ansible-playbook -i "localhost," roles/kostyrev.packer/playbook.yml --diff -c local
