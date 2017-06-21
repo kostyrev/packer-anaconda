@@ -1,6 +1,9 @@
 #!/bin/bash
 set -ev
 
+molecule --version
+ansible --version
+
 make roles
 molecule syntax
 molecule test
