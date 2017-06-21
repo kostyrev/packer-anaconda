@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - name: update ca-certificates package
+      package:
+        name: ca-certificates
+        state: latest
+  roles:
+    - role: andrewrothstein.anaconda
+      anaconda_make_sys_default: yes

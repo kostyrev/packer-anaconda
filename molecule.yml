@@ -1,0 +1,13 @@
+---
+
+ansible:
+  playbook: playbook.yml
+
+driver:
+  name: docker
+
+docker:
+  containers:
+    - name: ubuntu
+      image: ubuntu
+      image_version: 16.04

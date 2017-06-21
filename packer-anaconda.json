@@ -1,0 +1,45 @@
+{
+  "variables": {
+    "app_name": "anaconda",
+    "app_version": "4.4.0",
+    "region": "{{env `AWS_REGION`}}"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "{{user `region`}}",
+      "instance_type": "c4.large",
+      "source_ami_filter": {
+          "filters": {
+            "virtualization-type": "hvm",
+            "name": "base-ubuntu-16.04",
+            "root-device-type": "ebs"
+          },
+          "owners": ["762089471837"],
+          "most_recent": true
+      },
+      "ssh_username": "ubuntu",
+      "ssh_private_ip": false,
+      "ssh_pty": true,
+      "force_deregister": true,
+      "force_delete_snapshot": true,
+      "associate_public_ip_address": true,
+      "ami_name": "{{user `app_name`}}-{{user `app_version`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "playbook.yml",
+      "ansible_env_vars": [
+        "ANSIBLE_SSH_PIPELINING=n",
+        "ANSIBLE_HOST_KEY_CHECKING=False",
+        "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'",
+        "ANSIBLE_FORCE_COLOR=True" ],
+      "extra_arguments": [
+        "--diff",
+        "--extra-vars", "ansible_python_interpreter=/usr/bin/python3"
+      ]
+    }
+  ]
+}

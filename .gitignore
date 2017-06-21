@@ -1,0 +1,7 @@
+roles
+terraform/terraform.tfstate
+terraform/.terraform.tfstate.lock.info
+.envrc
+terraform/main.tf.bak
+terraform/terraform.tfstate.backup
+.molecule

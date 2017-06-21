@@ -1,0 +1,29 @@
+---
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+branches:
+  only:
+  - master
+
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
+
+install:
+- pip install -r requirements.txt
+
+script:
+- make roles
+- molecule syntax
+- molecule test
+- make packer
+- make anaconda
+
+notifications:
+  slack:
+    secure: FhEVvfYKSVElB03942Auulkwep5BkID9QkTduGkTkZ4W5nJZTWU0jlGyoginMu9WQf0ioIeg54tHyUEFD9tQ2rErjUiD+YGQ19+61WOr0KEaRqkhApkei15w/uetyuiMVQHv+OiyotBmSmpGLPjIQA6wmkwuxaeqCNlDjQr16Od5C6M5aXCANZ8AKlv5SSTE9SG+YHoiaeUBjqtVrfguhsSjTJCpInSbEfqZC2b782o8Ss0a6xU3CQRFtd7TnPvO2Kfn32bZ+vtsP5cmYiunIr8sXR5NDrQNL1KUd7leD7HD2HnQWeHZ9BQB4EMXfoXeSLS6xg4YTsDUkLLUZB5LwDnPkib/F7W+BxLqFY+9CMrlhpGkdsu44lIKVWUvJ6Hfxi+0S2h2mQ1h6kbQP0rNxS+F/pNlTvTEbOIL5Q8nnHlJKcUAWdGF9M2F6w0kbyYEU94GmhJ1yxUZwxKBMCyLiP5g2tjHe27E0IcaWvALYd0jA9iiDOINkiFfaTCYS++/5O/Q2/c9p7IW3LR4f8bL2Xiqj1fDsMiiEbSZA2Vt9NcSOYOIuxDQLuREyfTHrAjLsvjyHZ7LMamKxZW6pLEj2Ol4uQ1fb/kStRrIMysDBywQFlOnv0T9bmED55RYojDWS8JzEQmudMKeJowM4BtNFsNKQeY0nEqJBFWig/M6Pe8=

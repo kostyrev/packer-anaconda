@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  tasks:
+    - name: install python packages using conda
+      shell: "/usr/local/anaconda/bin/conda install -c conda-forge {{ item }}"
+      with_items:
+        - xgboost
+        - folium
+        - psycopg2
+        - sqlalchemy
+        - geopy
+        - geojson
+      environment:
+        ANACONDA_DIR: /usr/local/anaconda
+        PATH: "${ANACONDA_DIR}/bin:${PATH}"
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version|version_compare(16.04, '<=')
+      changed_when: no

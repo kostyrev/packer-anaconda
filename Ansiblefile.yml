@@ -1,0 +1,8 @@
+- src: https://github.com/kostyrev/ansible-anaconda
+  name: andrewrothstein.anaconda
+
+- src: https://github.com/GROG/ansible-role-package
+  name: GROG.package
+
+- src: https://github.com/kostyrev/ansible-role-packer
+  name: kostyrev.packer
