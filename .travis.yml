@@ -15,7 +15,7 @@ before_install:
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker.io
 
 install:
-- pip install -r requirements.txt
+- pip install --quiet -r requirements.txt
 
 script: ./run-tests.sh
 
