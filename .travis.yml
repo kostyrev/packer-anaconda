@@ -17,12 +17,7 @@ before_install:
 install:
 - pip install -r requirements.txt
 
-script:
-- make roles
-- molecule syntax
-- molecule test
-- make packer
-- make anaconda
+script: ./run-tests.sh
 
 notifications:
   slack:
