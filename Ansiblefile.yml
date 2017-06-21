@@ -5,6 +5,7 @@
   name: andrewrothstein.bash
 
 - src: https://github.com/kostyrev/ansible-anaconda
+  version: remotes/origin/rm-trailing-whitespaces
   name: andrewrothstein.anaconda
 
 - src: https://github.com/GROG/ansible-role-package
