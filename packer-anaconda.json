@@ -15,7 +15,7 @@
             "name": "base-ubuntu-16.04",
             "root-device-type": "ebs"
           },
-          "owners": ["762089471837"],
+          "owners": ["828328152120"],
           "most_recent": true
       },
       "ssh_username": "ubuntu",
@@ -24,6 +24,7 @@
       "force_deregister": true,
       "force_delete_snapshot": true,
       "associate_public_ip_address": true,
+      "ami_groups": "all",
       "ami_name": "{{user `app_name`}}-{{user `app_version`}}"
     }
   ],
@@ -34,7 +35,6 @@
       "ansible_env_vars": [
         "ANSIBLE_SSH_PIPELINING=n",
         "ANSIBLE_HOST_KEY_CHECKING=False",
-        "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'",
         "ANSIBLE_FORCE_COLOR=True" ],
       "extra_arguments": [
         "--diff",
