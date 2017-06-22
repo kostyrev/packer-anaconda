@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kostyrev/packer-anaconda.svg?branch=master)](https://travis-ci.org/kostyrev/packer-anaconda)
 ## SSH
 ### General info
 Read this [overview](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html).
