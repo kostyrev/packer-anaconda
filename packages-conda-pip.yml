@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  tasks:
+    - name: install packages using conda's pip
+      pip:
+        name: "{{ item }}"
+        executable: /usr/local/anaconda/bin/pip
+      with_items:
+        - tensorflow
+        - keras
+      environment:
+        ANACONDA_DIR: /usr/local/anaconda
+        PATH: "${ANACONDA_DIR}/bin:${PATH}"
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version|version_compare(16.04, '<=')
+      tags:
+        - skip_ansible_lint
