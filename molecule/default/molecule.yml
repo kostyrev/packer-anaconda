@@ -3,6 +3,10 @@
 driver:
   name: docker
 
+lint:
+  name: yamllint
+  enabled: False
+
 provisioner:
   name: ansible
   playbooks:
