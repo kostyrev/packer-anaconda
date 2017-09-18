@@ -1,0 +1,14 @@
+---
+
+driver:
+  name: docker
+
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ../../playbook.yml
+
+platforms:
+  - name: ubuntu
+    image: ubuntu
+    image_version: 16.04
