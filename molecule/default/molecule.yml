@@ -12,6 +12,14 @@ provisioner:
   playbooks:
     converge: ../../playbook.yml
 
+scenario:
+  name: default
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - destroy
+
 platforms:
   - name: ubuntu
     image: ubuntu
