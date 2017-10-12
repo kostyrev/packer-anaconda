@@ -21,6 +21,18 @@ variable "spot_price" {
   description = "The price to request on the spot market"
 }
 
+variable "ami_name" {
+  type        = "string"
+  description = "Name of ami to use"
+  default     = "anaconda-4.4.0"
+}
+
+variable "ami_owner" {
+  type        = "string"
+  description = "Owner of ami"
+  default     = "828328152120"
+}
+
 terraform {
   required_version = ">= 0.9.4"
 }
@@ -39,10 +51,10 @@ data "aws_ami" "anaconda" {
 
   filter {
     name   = "name"
-    values = ["anaconda-4.4.0"]
+    values = ["${var.ami_name}"]
   }
 
-  owners = ["828328152120"]
+  owners = ["${var.ami_owner}"]
 }
 
 data "aws_vpc" "vpc" {
