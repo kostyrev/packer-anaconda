@@ -100,4 +100,4 @@ terraform destroy
 > Do not cd into terraform/volume and do not `terraform destroy` in it unless you know what you are doing
 
 ### Demo
-[![asciicast](https://asciinema.org/a/bfbhhuiwqi0zx6nrspu5mch4e.png)](https://asciinema.org/a/bfbhhuiwqi0zx6nrspu5mch4e)
+[![asciicast](https://asciinema.org/a/oa4lBu6S3bSGAxqLMwYYjkGIc.png)](https://asciinema.org/a/oa4lBu6S3bSGAxqLMwYYjkGIc)
