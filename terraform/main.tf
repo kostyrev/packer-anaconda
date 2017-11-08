@@ -21,6 +21,11 @@ variable "spot_price" {
   description = "The price to request on the spot market"
 }
 
+variable "availability_zone" {
+  type        = "string"
+  description = "The availability zone in which to create an instance"
+}
+
 variable "ami_name" {
   type        = "string"
   description = "Name of ami to use"
@@ -104,6 +109,7 @@ resource "aws_spot_instance_request" "anaconda" {
   ami                  = "${data.aws_ami.anaconda.id}"
   instance_type        = "r4.4xlarge"
   spot_price           = "${var.spot_price}"
+  availability_zone    = "${var.availability_zone}"
   wait_for_fulfillment = true
   spot_type            = "one-time"
   key_name             = "${format("%s-jupyter", var.key_name)}"
