@@ -1,0 +1,37 @@
+#!/bin/bash
+set -eux
+
+# handle data volume
+
+data_device="/dev/xvdv"
+partition="${data_device}1"
+
+if ! blkid "${data_device}" > /dev/null
+then
+    parted "${data_device}" mklabel gpt
+fi
+
+partcount=$(lsblk -n "${data_device}" | wc -l)
+
+if [ "${partcount}" = 1 ]
+then
+    parted -s -a optimal "${data_device}" mkpart primary 0% 100%
+    # If we're creating partitions, then we should be creating an fs too
+    # I have a personal bias towards xfs, and against ext4 due to an old
+    # fs full bug in ext4
+    apt-get install -y xfsprogs
+    mkfs.xfs -f ${partition}
+    xfs_admin -L data ${partition}
+fi
+
+if ! grep -q data /etc/fstab
+then
+    echo 'LABEL=data /home/ubuntu/data xfs defaults 0 0' >> /etc/fstab
+    mkdir -p /home/ubuntu/data
+fi
+
+if ! grep -qs '/home/ubuntu/data' /proc/mounts
+then
+    mount /home/ubuntu/data
+    chown ubuntu:ubuntu /home/ubuntu/data
+fi

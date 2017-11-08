@@ -2,10 +2,10 @@
 export AWS_PROFILE=fasten-analytics
 
 # The price to request on the spot market
-export TF_VAR_spot_price=0.3
+export TF_VAR_spot_price=0.14
 
 # AWS region to create instances in
-export TF_VAR_region=us-east-1
+export TF_VAR_region=us-east-2
 
 # The name of ssh key pair
 export TF_VAR_key_name=$(echo $USER)
