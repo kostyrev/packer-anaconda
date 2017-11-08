@@ -72,14 +72,16 @@ or
 > **Note:**
 > Use `brew install terraform` on MacOS
 
-Go to directory with terraform configuration files  
-`cd terraform/`  
-Before any operations with terraform run  
-`terraform plan`  
-to verify that terraform will do what you planned it to do.
+> **Note:**
+> Before creating any resources execute `terraform plan` to verify that terraform will do what you planned it to do.
 
-If everything seems to be ok execute
+#### Create volume to persist data
+`cd terraform/volume`
+`terraform apply`
+
+### Start instance with volume
 ```
+cd ../terraform
 terraform apply
 ```
 
@@ -91,7 +93,11 @@ run jupiter
 
 ### Destroy instance
 ```
+cd terraform/
 terraform destroy
 ```
+> **Note:**
+> Do not cd into terraform/volume and do not `terraform destroy` in it unless you know what you are doing
+
 ### Demo
 [![asciicast](https://asciinema.org/a/bfbhhuiwqi0zx6nrspu5mch4e.png)](https://asciinema.org/a/bfbhhuiwqi0zx6nrspu5mch4e)

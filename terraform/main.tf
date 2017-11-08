@@ -1,7 +1,3 @@
-variable "key_name" {
-  description = "How to name SSH keypair and security group in AWS."
-}
-
 variable "public_key_path" {
   description = "Enter the path to the SSH Public Key to add to AWS."
   default     = "~/.ssh/id_rsa.pub"
@@ -12,18 +8,9 @@ variable "create_key_pair" {
   default     = true
 }
 
-variable "region" {
-  type = "string"
-}
-
 variable "spot_price" {
   type        = "string"
   description = "The price to request on the spot market"
-}
-
-variable "availability_zone" {
-  type        = "string"
-  description = "The availability zone in which to create an instance"
 }
 
 variable "ami_name" {
@@ -36,14 +23,6 @@ variable "ami_owner" {
   type        = "string"
   description = "Owner of ami"
   default     = "828328152120"
-}
-
-terraform {
-  required_version = ">= 0.9.4"
-}
-
-provider "aws" {
-  region = "${var.region}"
 }
 
 data "aws_ami" "anaconda" {
@@ -105,6 +84,41 @@ resource "aws_key_pair" "ssh-key" {
   count      = "${var.create_key_pair}"
 }
 
+data "aws_ebs_volume" "ebs_data_volume" {
+  most_recent = true
+
+  filter {
+    name   = "volume-type"
+    values = ["gp2"]
+  }
+
+  filter {
+    name   = "tag:Name"
+    values = ["${format("data-%s", var.key_name)}"]
+  }
+}
+
+resource "aws_volume_attachment" "ebs_data_volume" {
+  device_name  = "/dev/xvdv"
+  volume_id    = "${data.aws_ebs_volume.ebs_data_volume.id}"
+  instance_id  = "${aws_spot_instance_request.anaconda.spot_instance_id}"
+  skip_destroy = true
+
+  connection {
+    host  = "${aws_spot_instance_request.anaconda.public_ip}"
+    type  = "ssh"
+    user  = "ubuntu"
+    agent = "true"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/bootstrap",
+      "sudo /tmp/bootstrap",
+    ]
+  }
+}
+
 resource "aws_spot_instance_request" "anaconda" {
   ami                  = "${data.aws_ami.anaconda.id}"
   instance_type        = "r4.4xlarge"
@@ -117,13 +131,6 @@ resource "aws_spot_instance_request" "anaconda" {
   vpc_security_group_ids = [
     "${aws_security_group.jupyter.id}",
   ]
-
-  ebs_block_device {
-    device_name           = "/dev/xvdv"
-    volume_size           = 500
-    volume_type           = "gp2"
-    delete_on_termination = false
-  }
 
   connection {
     type  = "ssh"
@@ -145,9 +152,10 @@ resource "aws_spot_instance_request" "anaconda" {
   }
 
   provisioner "remote-exec" {
+    when = "destroy"
+
     inline = [
-      "chmod +x /tmp/bootstrap",
-      "sudo /tmp/bootstrap",
+      "sudo umount /dev/xvdv1",
     ]
   }
 }

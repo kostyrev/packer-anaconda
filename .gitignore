@@ -1,7 +1,14 @@
-roles
-terraform/terraform.tfstate
-terraform/.terraform.tfstate.lock.info
 .envrc
+roles
 terraform/main.tf.bak
-terraform/terraform.tfstate.backup
 .molecule
+ut/
+
+# Module directory
+**/.terraform/
+
+# Compiled files
+**/*.tfstate
+**/*.tfstate.*.backup
+**/*.tfstate.backup
+**/plan.terraform

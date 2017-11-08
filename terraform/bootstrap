@@ -19,7 +19,7 @@ then
     # If we're creating partitions, then we should be creating an fs too
     # I have a personal bias towards xfs, and against ext4 due to an old
     # fs full bug in ext4
-    apt-get install -y xfsprogs
+    apt-get install -qq -y xfsprogs > /dev/null
     mkfs.xfs -f ${partition}
     xfs_admin -L data ${partition}
 fi
