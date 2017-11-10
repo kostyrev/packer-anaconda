@@ -13,6 +13,7 @@
         - shapely
         - rtree
         - tqdm
+        - bhtsne
       environment:
         ANACONDA_DIR: /usr/local/anaconda
         PATH: "${ANACONDA_DIR}/bin:${PATH}"
