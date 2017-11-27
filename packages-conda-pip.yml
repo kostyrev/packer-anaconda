@@ -14,9 +14,6 @@
         - rtree
         - tqdm
         - bhtsne
-      environment:
-        ANACONDA_DIR: /usr/local/anaconda
-        PATH: "${ANACONDA_DIR}/bin:${PATH}"
       when:
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_version|version_compare(16.04, '<=')
