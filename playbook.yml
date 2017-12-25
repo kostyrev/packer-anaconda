@@ -2,3 +2,4 @@
 
 - include: anaconda.yml
 - include: packages.yml
+- include: pritunl.yml

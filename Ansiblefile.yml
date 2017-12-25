@@ -13,3 +13,6 @@
 
 - src: https://github.com/kostyrev/ansible-role-packer
   name: kostyrev.packer
+
+- src: https://github.com/kostyrev/ansible-role-pritunl-client.git
+  name: jugatsu.pritunl-client

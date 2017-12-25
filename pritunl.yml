@@ -1,0 +1,5 @@
+- hosts: all
+  roles:
+    - role: jugatsu.pritunl-client
+      vars:
+        pritunl_client_version: '*'
