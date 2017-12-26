@@ -14,6 +14,5 @@
 - src: https://github.com/kostyrev/ansible-role-packer
   name: kostyrev.packer
 
-- src: https://github.com/kostyrev/ansible-role-pritunl-client
-  version: remotes/origin/all-my-fixes
+- src: https://github.com/jugatsu/ansible-role-pritunl-client
   name: jugatsu.pritunl-client
