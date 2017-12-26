@@ -1,5 +1,6 @@
 - hosts: all
   roles:
     - role: jugatsu.pritunl-client
+      when: ansible_virtualization_type != 'docker'
       vars:
         pritunl_client_version: '*'
