@@ -26,7 +26,7 @@ resource "aws_spot_instance_request" "anaconda" {
     when = "destroy"
 
     inline = [
-      "if grep -qs '/home/ubuntu/data' /proc/mounts; then sudo umount /dev/xvdv1; fi"
+      "if grep -qs '/home/ubuntu/data' /proc/mounts; then sudo umount /dev/xvdv1; fi",
     ]
   }
 }
