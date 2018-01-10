@@ -17,4 +17,6 @@
           delay: 5
           until: "pgrep.rc == 1"
           ignore_errors: yes
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_virtualization_type != 'docker'
