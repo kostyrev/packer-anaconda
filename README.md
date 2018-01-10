@@ -76,12 +76,13 @@ or
 > Before creating any resources execute `terraform plan` to verify that terraform will do what you planned it to do.
 
 #### Create volume to persist data
-`cd terraform/volume`
-`terraform apply`
-
+```
+cd terraform/volume
+terraform apply
+```
 ### Start instance with volume
 ```
-cd ../terraform
+cd ..
 terraform apply
 ```
 
