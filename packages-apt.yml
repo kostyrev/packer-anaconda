@@ -7,5 +7,21 @@
         update_cache: yes
       when: ansible_os_family == 'Debian'
       changed_when: false
+
+    - name: Update all packages to the latest version on Ubuntu
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when:
+        - ansible_os_family == 'Debian'
+        - not ansible_virtualization_type == 'virtualbox'
+
+    - name: Update all packages on RedHat
+      package:
+        name: "*"
+        state: latest
+      when:
+        - ansible_os_family == 'RedHat'
+        - not ansible_virtualization_type == 'virtualbox'
   roles:
     - GROG.package
