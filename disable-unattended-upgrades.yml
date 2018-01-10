@@ -1,0 +1,20 @@
+- hosts: all
+  tasks:
+    - block:
+        - name: disable apt-daily
+          systemd:
+            name: "{{ item }}"
+            state: stopped
+            enabled: no
+          with_items:
+            - apt-daily.timer
+            - apt-daily.service
+
+        - name: wait until /usr/bin/unattended-upgrade is completed
+          command: pgrep -a -f /usr/bin/unattended-upgrade
+          register: pgrep
+          retries: 100
+          delay: 5
+          until: "pgrep.rc == 1"
+          ignore_errors: yes
+      when: ansible_os_family == 'Debian'

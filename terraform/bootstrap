@@ -1,6 +1,12 @@
 #!/bin/bash
 set -eux
 
+#Fix Could not get lock /var/lib/dpkg/lock
+systemctl stop apt-daily.timer
+systemctl disable apt-daily.service
+systemctl disable apt-daily.timer
+while pgrep -f "/usr/bin/unattended-upgrade"; do sleep 5;done
+
 # handle data volume
 
 data_device="/dev/xvdv"

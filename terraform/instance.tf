@@ -22,14 +22,6 @@ resource "aws_spot_instance_request" "anaconda" {
     destination = "/tmp/bootstrap"
   }
 
-  # Without this sometimes the error arises
-  # E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
-  provisioner "remote-exec" {
-    inline = [
-      "timeout 180 /bin/bash -x -c 'until stat /var/lib/cloud/instance/boot-finished &>/dev/null; do echo Waiting for cloud-init boot-finished; sleep 6; done'",
-    ]
-  }
-
   provisioner "remote-exec" {
     when = "destroy"
 

@@ -3,3 +3,4 @@
 - include: anaconda.yml
 - include: packages.yml
 - include: pritunl.yml
+- include: disable-unattended-upgrades.yml
