@@ -26,6 +26,14 @@ resource "aws_volume_attachment" "ebs_data_volume" {
   }
 
   provisioner "remote-exec" {
+    when = "destroy"
+    inline = [
+      "sudo sudo fuser -km /home/ubuntu/data",
+      "sudo umount /home/ubuntu/data"
+    ]
+  }
+
+  provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/bootstrap",
       "sudo /tmp/bootstrap",
