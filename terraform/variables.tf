@@ -37,3 +37,9 @@ variable "ami_owner" {
   description = "Owner of ami"
   default     = "828328152120"
 }
+
+variable "root_volume_size" {
+  type        = "string"
+  description = "Size in GB of root device"
+  default     = "10"
+}

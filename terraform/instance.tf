@@ -11,6 +11,10 @@ resource "aws_spot_instance_request" "anaconda" {
     "${aws_security_group.jupyter.id}",
   ]
 
+  root_block_device {
+    volume_size = "${var.root_volume_size}"
+  }
+
   connection {
     type  = "ssh"
     user  = "ubuntu"
