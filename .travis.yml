@@ -14,8 +14,8 @@ before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
 
-# install:
-# - pip install --quiet -r requirements.txt
+install:
+- pip install --quiet -r requirements.txt
 
 script:
   - echo yaya
