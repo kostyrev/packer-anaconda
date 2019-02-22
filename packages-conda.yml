@@ -11,6 +11,13 @@
         - sqlalchemy
         - geopy
         - geojson
+        - lightgbm
+        - eli5
+        - shap
+        - catboost
+        - mlxtend
+        - pytorch
+        - pandas==0.24.1
       environment:
         ANACONDA_DIR: /usr/local/anaconda
         PATH: "${ANACONDA_DIR}/bin:${PATH}"
