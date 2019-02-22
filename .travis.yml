@@ -11,9 +11,12 @@ before_install:
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
 
 install:
-- pip install --quiet -r requirements.txt
+- pip install pipenv
+- pipenv install
 
-script: ./run-tests.sh
+script:
+  - pipenv run make roles
+  - pipenv run ./run-tests.sh
 
 notifications:
   slack:

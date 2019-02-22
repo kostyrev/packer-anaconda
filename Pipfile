@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ansible = "==2.6.8"
+ansible-lint = "*"
+docker-py = "*"
+molecule = "==2.19.0"
+pre-commit = "*"
+virtualenv = "==16.4.1"
+
+[requires]
+python_version = "2.7"
+
+[pipenv]
+allow_prereleases = true

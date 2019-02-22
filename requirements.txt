@@ -1,5 +1,1 @@
-ansible==2.3.0.0
-ansible-lint
-docker
-molecule==2.0.4
 pre-commit
