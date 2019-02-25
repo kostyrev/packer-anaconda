@@ -15,7 +15,6 @@ install:
 - pipenv install
 
 script:
-  - pipenv run make roles
   - pipenv run ./run-tests.sh
 
 notifications:
