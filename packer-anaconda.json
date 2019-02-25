@@ -19,7 +19,6 @@
           "most_recent": true
       },
       "ssh_username": "ubuntu",
-      "ssh_private_ip": false,
       "ssh_pty": true,
       "force_deregister": true,
       "force_delete_snapshot": true,
